@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from "react";
-
+import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import "./styles.css";
 
 import rock from "../../images/icon-rock.svg";
@@ -13,6 +13,8 @@ const Game = () => {
    const [computerMove, setComputerMove] = useState("");
    const [resultMessage, setResultMessage] = useState("");
 
+   const dispatch = useDispatch();
+
    const playAgain = useRef(null);
 
    const options = [
@@ -25,11 +27,26 @@ const Game = () => {
       return new Promise((resolve) => setTimeout(resolve, ms));
    }
 
+   const win = () => {
+      dispatch({ type: "INCREASE_SCORE" });
+      setResultMessage("YOU WON!");
+   };
+
+   const lose = () => {
+      dispatch({ type: "DECREASE_SCORE" });
+      setResultMessage("YOU LOST!");
+   };
+
    const play = async (userDecision) => {
       setChoosing(false);
       setUserMove(userDecision);
       const computerDecision =
          options[Math.floor(Math.random() * options.length)];
+
+      for (let i = 0; i < 60; i++) {
+         setComputerMove(options[Math.floor(Math.random() * options.length)]);
+         await sleep(50);
+      }
 
       if (userDecision.name === computerDecision.name) {
          setResultMessage("DRAW!");
@@ -37,36 +54,31 @@ const Game = () => {
          switch (userDecision.name) {
             case "rock":
                if (computerDecision.name === "paper") {
-                  setResultMessage("YOU LOST!");
+                  lose();
                } else {
-                  setResultMessage("YOU WON!");
+                  win();
                }
                break;
 
             case "paper":
                if (computerDecision.name === "scissors") {
-                  setResultMessage("YOU LOST!");
+                  lose();
                } else {
-                  setResultMessage("YOU WON!");
+                  win();
                }
                break;
 
             case "scissors":
                if (computerDecision.name === "rock") {
-                  setResultMessage("YOU LOST!");
+                  lose();
                } else {
-                  setResultMessage("YOU WON!");
+                  win();
                }
                break;
 
             default:
                break;
          }
-      }
-
-      for (let i = 0; i < 60; i++) {
-         setComputerMove(options[Math.floor(Math.random() * options.length)]);
-         await sleep(50);
       }
 
       setComputerMove(computerDecision);
