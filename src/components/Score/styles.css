@@ -1,0 +1,55 @@
+.score-container {
+   display: flex;
+   flex-direction: row;
+   border: 3px solid rgba(194, 194, 194, 0.363);
+   border-radius: 10px;
+   width: 100%;
+   max-width: 700px;
+   padding: 18px;
+   align-items: center;
+   justify-content: space-between;
+   height: 100px;
+   box-shadow: inset 0px 0px 4px 4px #0000000e;
+}
+
+.logo {
+   height: 100%;
+}
+
+.score-card {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background: linear-gradient(187.21deg, #ffffff 4.7%, #b0aeae 94.34%);
+   border-radius: 8px;
+
+   height: 100%;
+   width: 120px;
+}
+
+h4 {
+   color: #1d46ad;
+   font-size: 12px;
+   letter-spacing: 0.1em;
+}
+
+h1 {
+   color: #3c4457;
+   font-size: 42px;
+}
+
+@media (max-width: 425px) {
+   .score-container {
+      height: 90px;
+      padding: 12px;
+   }
+
+   .logo {
+      height: 70%;
+   }
+
+   .score-card {
+      width: 100px;
+   }
+}
