@@ -8,7 +8,11 @@
    padding: 0 2rem;
    display: flex;
    align-items: center;
-   justify-content: space-around;
+   justify-content: center;
    flex-direction: column;
    position: relative;
+}
+
+.main-container > * {
+   margin: 2em;
 }
