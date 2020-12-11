@@ -6,6 +6,16 @@
    justify-content: center;
 }
 
+.play-again {
+   width: 0%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   transition: 2s;
+   overflow: hidden;
+}
+
 .picked {
    text-align: center;
    margin: 0 2rem;

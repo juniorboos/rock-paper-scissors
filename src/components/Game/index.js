@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 import "./styles.css";
 
@@ -11,6 +11,9 @@ const Game = () => {
    const [choosing, setChoosing] = useState(true);
    const [userMove, setUserMove] = useState("");
    const [computerMove, setComputerMove] = useState("");
+   const [resultMessage, setResultMessage] = useState("");
+
+   const playAgain = useRef(null);
 
    const options = [
       { name: "rock", image: rock },
@@ -18,44 +21,69 @@ const Game = () => {
       { name: "scissors", image: scissors },
    ];
 
-   const play = (userDecision) => {
+   function sleep(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+   }
+
+   const play = async (userDecision) => {
       setChoosing(false);
       setUserMove(userDecision);
       const computerDecision =
          options[Math.floor(Math.random() * options.length)];
-      setComputerMove(computerDecision);
 
       if (userDecision.name === computerDecision.name) {
-         return console.log("Draw!");
+         setResultMessage("DRAW!");
+      } else {
+         switch (userDecision.name) {
+            case "rock":
+               if (computerDecision.name === "paper") {
+                  setResultMessage("YOU LOST!");
+               } else {
+                  setResultMessage("YOU WON!");
+               }
+               break;
+
+            case "paper":
+               if (computerDecision.name === "scissors") {
+                  setResultMessage("YOU LOST!");
+               } else {
+                  setResultMessage("YOU WON!");
+               }
+               break;
+
+            case "scissors":
+               if (computerDecision.name === "rock") {
+                  setResultMessage("YOU LOST!");
+               } else {
+                  setResultMessage("YOU WON!");
+               }
+               break;
+
+            default:
+               break;
+         }
       }
 
-      switch (userDecision.name) {
-         case "rock":
-            if (computerDecision.name === "paper") {
-               console.log("You lost!");
-            } else {
-               console.log("You win!");
-            }
-            break;
-
-         case "paper":
-            if (computerDecision.name === "scissors") {
-               console.log("You lost!");
-            } else {
-               console.log("You win!");
-            }
-            break;
-
-         case "scissors":
-            if (computerDecision.name === "rock") {
-               console.log("You lost!");
-            } else {
-               console.log("You win!");
-            }
-
-         default:
-            break;
+      for (let i = 0; i < 60; i++) {
+         setComputerMove(options[Math.floor(Math.random() * options.length)]);
+         await sleep(50);
       }
+
+      setComputerMove(computerDecision);
+      playAgain.current.style.width = "100%";
+   };
+
+   // useEffect(() => {
+   //    setTimeout(() => {
+   //       playAgain.current.style.width = "100%";
+   //    }, 3000);
+   // }, [choosing]);
+
+   const restart = () => {
+      setChoosing(true);
+      setUserMove("");
+      setComputerMove("");
+      setResultMessage("");
    };
 
    if (choosing) {
@@ -94,6 +122,10 @@ const Game = () => {
                <div className={"option " + userMove.name}>
                   <img src={userMove.image} alt="" />
                </div>
+            </div>
+            <div className="play-again" ref={playAgain}>
+               <h1>{resultMessage}</h1>
+               <button onClick={() => restart()}>PLAY AGAIN</button>
             </div>
             <div className="picked">
                <h4>THE HOUSE PICKED</h4>
