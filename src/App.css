@@ -16,3 +16,9 @@
 .main-container > * {
    margin: 2em;
 }
+
+@media (max-width: 1024px) {
+   .main-container {
+      padding: 0;
+   }
+}

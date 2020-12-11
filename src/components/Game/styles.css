@@ -1,5 +1,5 @@
 .game-container {
-   width: 70rem;
+   max-width: 100%;
    /* height: 100px; */
    display: flex;
    align-items: center;
@@ -12,8 +12,30 @@
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   transition: 2s;
+   transition: 3s;
    overflow: hidden;
+   margin: 0 2rem;
+}
+
+.play-again > * {
+   overflow: hidden;
+   white-space: nowrap;
+}
+
+.play-again h1 {
+   color: white;
+}
+
+.play-again button {
+   background-color: white;
+   border-radius: 5px;
+   border: none;
+   width: 100%;
+   height: 48px;
+   font-size: 24px;
+   color: rgb(31, 31, 141);
+   font-weight: bold;
+   margin-top: 16px;
 }
 
 .picked {
@@ -27,7 +49,8 @@
 
 .picked h4 {
    margin-bottom: 16px;
-   font-size: 18px;
+   font-size: 24px;
+   color: rgb(87, 87, 255);
 }
 
 .choosing {
@@ -101,4 +124,49 @@
 
 .select:hover {
    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+   .picked .option {
+      width: 120px;
+      height: 120px;
+   }
+
+   .picked h4 {
+      font-size: 12px;
+   }
+
+   .picked {
+      margin: 0 1rem;
+   }
+
+   .play-again {
+      margin: 0;
+   }
+
+   .play-again h1 {
+      font-size: 32px;
+   }
+}
+
+@media (max-width: 600px) {
+   .game-container {
+      position: relative;
+   }
+
+   .picked {
+      margin: 0 2rem;
+   }
+
+   .play-again {
+      position: absolute;
+      top: 120%;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+   }
+
+   .play-again h1 {
+      font-size: 42px;
+   }
 }

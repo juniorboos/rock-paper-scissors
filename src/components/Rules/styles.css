@@ -2,11 +2,15 @@
    border: 1px solid rgba(255, 255, 255, 0.548);
    background: none;
    color: white;
-   padding: 8px 32px;
+   padding: 8px;
+   height: 50px;
+   width: 160px;
    border-radius: 5px;
-   letter-spacing: 0.1em;
+   letter-spacing: 0.2em;
    cursor: pointer;
    position: absolute;
+   font-size: 18px;
+
    right: 100px;
    bottom: 100px;
 }
@@ -59,7 +63,7 @@ header img {
       margin: 0 auto;
       right: 0;
       left: 0;
-      bottom: 60px;
+      bottom: 80px;
    }
 
    header {
@@ -83,5 +87,6 @@ header img {
       top: 0;
       border-radius: 0;
       padding: 0px;
+      margin: 0px;
    }
 }

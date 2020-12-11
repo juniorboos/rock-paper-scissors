@@ -73,12 +73,6 @@ const Game = () => {
       playAgain.current.style.width = "100%";
    };
 
-   // useEffect(() => {
-   //    setTimeout(() => {
-   //       playAgain.current.style.width = "100%";
-   //    }, 3000);
-   // }, [choosing]);
-
    const restart = () => {
       setChoosing(true);
       setUserMove("");
